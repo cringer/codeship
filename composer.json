@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "cringer/codeship",
+    "description": "Testing codeship in Laravel.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
