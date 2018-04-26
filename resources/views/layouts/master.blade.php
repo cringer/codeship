@@ -14,7 +14,7 @@
         <div class="container">
 
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 border rounded">
                 <a class="navbar-brand" href="/">URL Shortener</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNav" aria-expanded="false">
                     <span class="navbar-toggler-icon"></span>
