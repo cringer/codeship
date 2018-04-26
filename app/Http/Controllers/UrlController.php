@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Url;
 use Illuminate\Http\Request;
+use LeadThread\Shortener\Shortener;
 
 class UrlController extends Controller
 {
-    public function manageUrl(Request $request, Store $session, Shortener $shortener)
+    public function manageUrl(Request $request, Shortener $shortener)
     {
         if ($request->isMethod('post')) {
             $this->validate($request, [
@@ -15,16 +16,18 @@ class UrlController extends Controller
             ]);
         }
 
-        $this->saveAndFlash($request, $session, $shortener);
+        $this->saveAndFlash($request, $shortener);
+
+        return view('url.manage', []);
     }
 
-    public function viewUrls(Store $session)
+    public function viewUrls(Request $request)
     {
         $urls = Url::all();
 
         return view('url.view', [
             'urls' => $urls,
-            'message' => $session->get('message'),
+            'message' => $request->session()->get('message'),
         ]);
     }
 
@@ -37,8 +40,8 @@ class UrlController extends Controller
         return $url->saveOrFail();
     }
 
-    private function saveAndFlash(Request $request, Store $session, Shortener $shortener) {
+    private function saveAndFlash(Request $request, Shortener $shortener) {
         $message = $this->save($request, $shortener) ? 'Record saved' : 'Record NOT saved';
-        $session->flash('message', $message);
+        $request->session()->flash('message', $message);
     }
 }
