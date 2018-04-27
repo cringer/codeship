@@ -11,12 +11,16 @@ class UrlController extends Controller
     public function manageUrl(Request $request, Shortener $shortener)
     {
         if ($request->isMethod('post')) {
-            $this->validate($request, [
-                'url' => 'required|url|unique:urls,original_url',
-            ]);
-        }
+            if ($request->has('url')) {
+                $this->validate($request, [
+                    'url' => 'required|url|unique:urls,original_url',
+                ]);
 
-        $this->saveAndFlash($request, $shortener);
+                $this->saveAndFlash($request, $shortener);
+
+                return redirect()->route('view-urls'); 
+            }
+        }
 
         return view('url.manage', []);
     }
