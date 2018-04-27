@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::match(['get', 'post'], '/manage-url{uuid?}', 'UrlController@manageUrl')
+Route::match(['get', 'post'], '/manage-url/{uuid?}', 'UrlController@manageUrl')
     ->where(['uuid' => '[a-f0-9\-]+'])
     ->name('manage-route');
 
